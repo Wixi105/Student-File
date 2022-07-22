@@ -22,6 +22,9 @@
             <div>
                 <x-table :student="$students" />
             </div>
+            <div class="mt-8">
+                {{ $students->links() }}
+            </div>
         </div>
     </div>
 
