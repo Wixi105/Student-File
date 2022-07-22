@@ -16,4 +16,9 @@ class Student extends Model
     {
         return $this->hasMany(File::class, 'studid');
     }
+
+    protected function getFnameAttribute($value)
+    {
+        return $value ?? "NONE";
+    }
 }

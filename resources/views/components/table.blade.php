@@ -28,23 +28,25 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-gray-600 divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr class="hover:bg-gray-700">
+                        <tbody class="bg-blue-900 divide-y divide-gray-200 dark:divide-gray-700">
+                            @foreach ($student as $stu)
+                                <tr class="hover:bg-gray-700">
 
-                                <td
-                                    class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
-                                    PS/ITC/17/0019</td>
-                                <td
-                                    class="py-4 px-6 text-lg font-medium text-gray-100 whitespace-nowrap tracking-wider">
-                                    Michael</td>
-                                <td
-                                    class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
-                                    Scott</td>
-                                <td class="py-4 px-6 text-md text-right whitespace-nowrap ">
-                                    <a href="#"
-                                        class="text-gray-100 font-bold hover:underline uppercase tracking-widest border-2 hover:bg-white hover:text-gray-800 hover:shadow-md border-gray-200 px-3 py-2 rounded-md no-underline hover:no-underline">View</a>
-                                </td>
-                            </tr>
+                                    <td
+                                        class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
+                                        {{ $stu->regno }}</td>
+                                    <td
+                                        class="py-4 px-6 text-lg font-medium text-gray-100 whitespace-nowrap tracking-wider">
+                                        {{ $stu->fname }}</td>
+                                    <td
+                                        class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
+                                        {{ $stu->lname }}</td>
+                                    <td class="py-4 px-6 text-md text-right whitespace-nowrap ">
+                                        <a href="#"
+                                            class="text-gray-100 font-bold uppercase tracking-widest border-2 hover:bg-white hover:text-gray-800 hover:shadow-md border-gray-200 px-3 py-2 rounded-md no-underline hover:no-underline">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>

@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <x-table />
+                <x-table :student="$students" />
             </div>
         </div>
     </div>
