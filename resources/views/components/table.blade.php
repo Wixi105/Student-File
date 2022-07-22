@@ -1,3 +1,4 @@
+@props(['student'])
 <!-- component -->
 <!-- This is an example component -->
 <div class="w-full mt-24 mx-auto">
@@ -27,8 +28,8 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-gray-500 divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr class="hover:bg-gray-100">
+                        <tbody class="bg-gray-600 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="hover:bg-gray-700">
 
                                 <td
                                     class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
@@ -39,9 +40,9 @@
                                 <td
                                     class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
                                     Scott</td>
-                                <td class="py-4 px-6 text-md text-right whitespace-nowrap">
+                                <td class="py-4 px-6 text-md text-right whitespace-nowrap ">
                                     <a href="#"
-                                        class="text-gray-100 font-bold hover:underline uppercase tracking-widest">View</a>
+                                        class="text-gray-100 font-bold hover:underline uppercase tracking-widest border-2 hover:bg-white hover:text-gray-800 hover:shadow-md border-gray-200 px-3 py-2 rounded-md no-underline hover:no-underline">View</a>
                                 </td>
                             </tr>
 
