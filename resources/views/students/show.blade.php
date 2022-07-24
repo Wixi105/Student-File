@@ -6,105 +6,107 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md">
-            <div>
 
-
-                <p class="text-base uppercase font-semibold">Registration Number: <span
-                        class="font-medium text-lg">{{ $student->regno }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Last Name: <span class="font-medium text-lg">{{ $student->lname }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">First Name: <span class="font-medium text-lg">{{ $student->fname }}</span></p>
-
-                @if ($student->mname)
-                    <p class="text-base uppercase font-semibold">Middle Name: <span
-                            class="font-medium text-lg">{{ $student->mname }}</span>
-                    </p>
-                @endif
-
-
-                <p class="text-base uppercase font-semibold">Title: <span class="font-medium text-lg">{{ $student->title }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Gender: <span class="font-medium text-lg">{{ $student->sex }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Cellphone: <span class="font-medium text-lg">{{ $student->cellphone }}</span>
-                </p>
-
-
-                @if ($student->email)
-                    <p class="text-base uppercase font-semibold">Email: <span class="font-medium text-lg">{{ $student->email }}</span>
-                    </p>
-                @endif
-
-
-                <p class="text-base uppercase font-semibold">Marital Status: <span
-                        class="font-medium text-lg">{{ $student->marital_status }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Date of Birth: <span class="font-medium text-lg">{{ $student->dob }}</span>
-                </p>
-
-
-                <p class="text-base uppercase font-semibold">Date of Acceptance: <span
-                        class="font-medium text-lg">{{ $student->doa }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Date of Completion: <span
-                        class="font-medium text-lg">{{ $student->doc }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">Programme: <span class="font-medium text-lg">{{ $student->progid }}</span>
-                </p>
-
-
-                <p class="text-base uppercase font-semibold">Level: <span class="font-medium text-lg">{{ $student->level }}</span></p>
-
-
-                <p class="text-base uppercase font-semibold">HALL: <span class="font-medium text-lg">{{ $student->hallid }}</span></p>
-
-
-                @if ($student->resident_status)
-                    <p class="text-base uppercase font-semibold">Resident Status: <span
-                            class="font-medium text-lg">{{ $student->resident_status }}</span></p>
-                @endif
-
-
-                @if ($student->room_no)
-                    <p class="text-base uppercase font-semibold">Room Number: <span
-                            class="font-medium text-lg">{{ $student->room_no }}</span></p>
-                @endif
-
-                @if ($student->pob_town)
-                    <p class="text-base uppercase font-semibold">Place of Birth: <span
-                            class="font-medium text-lg">{{ $student->pob_town }},{{ $student->pob_region }}</span></p>
-                @endif
-
-
-                <p class="text-base uppercase font-semibold">Nationality: <span
-                        class="font-medium text-lg">{{ $student->nationality }}</span></p>
-
-
-                @if ($student->hometown)
-                    <p class="text-base uppercase font-semibold">Hometown: <span
-                            class="font-medium text-lg">{{ $student->hometown }}</span>
-                    </p>
-                @endif
-
-
-                <p class="text-base uppercase font-semibold">Post Box: <span class="font-medium text-lg">{{ $student->post_box }}</span>
-                </p>
-
-
-
-                @if ($student->homeadd)
-                    <p class="text-base uppercase font-semibold">Home Address: <span
-                            class="font-medium text-lg">{{ $student->homeadd }}</span></p>
-                @endif
+            <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </span>
+                    <span class="tracking-wide">About</span>
+                </div>
+                <div class="text-gray-700">
+                    <div class="grid md:grid-cols-2 text-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Registration Number:</div>
+                            <div class="px-4 py-2">{{ $student->regno }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">First Name</div>
+                            <div class="px-4 py-2">{{ $student->fname }}</div>
+                        </div>
+                        @if ($student->mname)
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Middle Name</div>
+                                <div class="px-4 py-2">{{ $student->mname }}</div>
+                            </div>
+                        @endif
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Last Name</div>
+                            <div class="px-4 py-2">{{ $student->lname }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Gender</div>
+                            <div class="px-4 py-2">{{ $student->sex }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Contact No.</div>
+                            <div class="px-4 py-2">{{ $student->cellphone }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Current Address</div>
+                            <div class="px-4 py-2">{{ $student->homeadd }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Permanant Address</div>
+                            <div class="px-4 py-2">{{ $student->homeadd }}
+                            </div>
+                            @if ($student->email)
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-2 font-semibold">Email.</div>
+                                    <div class="px-4 py-2">
+                                        <a class="text-blue-800"
+                                            href="mailto:jane@example.com">{{ $student->email }}</a>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Birthday</div>
+                                <div class="px-4 py-2">{{ $student->dob }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Title</div>
+                                <div class="px-4 py-2">{{ $student->title }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Marital Status</div>
+                                <div class="px-4 py-2">{{ $student->marital_status }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Date of Acceptance</div>
+                                <div class="px-4 py-2">{{ $student->doa }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Date of Completion</div>
+                                <div class="px-4 py-2">{{ $student->doc }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Programme</div>
+                                <div class="px-4 py-2">{{ $student->progid }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Hall</div>
+                                <div class="px-4 py-2">{{ $student->hallid }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Nationality</div>
+                                <div class="px-4 py-2">{{ $student->nationality }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 font-semibold">Post Office Box</div>
+                                <div class="px-4 py-2">{{ $student->post_box }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4"></div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 </x-app-layout>
