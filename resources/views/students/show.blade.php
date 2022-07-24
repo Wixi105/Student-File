@@ -95,7 +95,13 @@
             </div>
             <div class="my-4"></div>
         </div>
-        <x-file-upload/>
+        
+        {{-- File Upload Form --}}
+        <div>
+
+            <x-file-upload />
+        </div>
+        {{-- File Upload Form --}}
 
     </div>
 </x-app-layout>
