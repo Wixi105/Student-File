@@ -12,15 +12,15 @@
                             <tr>
 
                                 <th scope="col"
-                                    class="py-3 px-6 text-sm font-medium tracking-wider text-left text-gray-700 uppercase ">
-                                    Student ID
+                                    class="py-3 px-6 text-sm font-bold tracking-wider text-left text-gray-700 uppercase ">
+                                    Index No.
                                 </th>
                                 <th scope="col"
-                                    class="py-3 px-6 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">
+                                    class="py-3 px-6 text-sm font-bold tracking-wider text-left text-gray-700 uppercase">
                                     First Name
                                 </th>
                                 <th scope="col"
-                                    class="py-3 px-6 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">
+                                    class="py-3 px-6 text-sm font-bold tracking-wider text-left text-gray-700 uppercase">
                                     Last Name
                                 </th>
                                 <th scope="col" class="p-4">
@@ -30,28 +30,30 @@
                         </thead>
                         <tbody class="bg-blue-900 divide-y divide-gray-200 dark:divide-gray-700 p-5">
                             @if ($student->count())
-                                
-                            @foreach ($student as $stu)
-                                <tr class="hover:bg-gray-700">
 
-                                    <td
-                                        class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
-                                        {{ $stu->regno }}</td>
-                                    <td
-                                        class="py-4 px-6 text-lg font-medium text-gray-100 whitespace-nowrap tracking-wider">
-                                        {{ $stu->fname }}</td>
-                                    <td
-                                        class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
-                                        {{ $stu->lname }}</td>
-                                    <td class="py-4 px-6 text-md text-right whitespace-nowrap ">
-                                        <a href="#"
-                                            class="text-gray-100 font-bold uppercase tracking-widest border-2 hover:bg-white hover:text-gray-800 hover:shadow-md border-gray-200 px-3 py-2 rounded-md no-underline hover:no-underline">View</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach ($student as $stu)
+                                    <tr class="hover:bg-gray-700">
+
+                                        <td
+                                            class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
+                                            {{ $stu->regno }}</td>
+                                        <td
+                                            class="py-4 px-6 text-lg font-medium text-gray-100 whitespace-nowrap tracking-wider">
+                                            {{ $stu->fname }}</td>
+                                        <td
+                                            class="py-4 px-6 text-lg font-medium text-gray-100  whitespace-nowrap tracking-wider">
+                                            {{ $stu->lname }}</td>
+                                        <td class="py-4 px-6 text-md text-right whitespace-nowrap ">
+                                            <a href="{{ route('students.show', $stu->studid) }}"
+                                                class="text-gray-100 font-bold uppercase tracking-widest border-2 hover:bg-white hover:text-gray-800 hover:shadow-md border-gray-200 px-3 py-2 rounded-md no-underline hover:no-underline">View</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" class="text-center py-10 text-3xl text-white font-bold tracking-wider">Student Does Not Exist</td>
+                                    <td colspan="4"
+                                        class="text-center py-10 text-3xl text-white font-bold tracking-wider">Student
+                                        Does Not Exist</td>
                                 </tr>
                             @endif
 

@@ -28,7 +28,15 @@ class Student extends Model
             $query->where('fname', 'LIKE', "%{$search}%");
             $query->orWhere('lname', 'LIKE', "%{$search}%");
             $query->orWhere('regno', 'LIKE', "%{$search}%");
+            $query->orWhere('dob', 'LIKE', "%{$search}%");
+            $query->orWhereRaw("concat(fname, ' ', lname) like '%{$search}%' ");
+
         }
         return $query;
     }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'regno';
+    // }
 }

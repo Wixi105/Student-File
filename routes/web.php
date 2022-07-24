@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', [StudentController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [StudentController::class, 'index'])->middleware(['auth'])->name('students.dashboard');
+Route::get('/students/{student:studid}', [StudentController::class, 'show'])->middleware(['auth'])->name('students.show');
 
 require __DIR__ . '/auth.php';

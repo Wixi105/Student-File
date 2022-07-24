@@ -13,14 +13,16 @@
                         <input type="text" class="w-full border border-blue-900 focus:border-black rounded-md"
                             placeholder="Search for a Student. (e.g. Michael Agyei or PS/ITC/17/0019)" name="search"
                             id="search" value="{{ request('search') }}">
+                        <div>
+                            <button
+                                class="bg-blue-800 mt-4 text-white py-2 px-4 uppercase tracking-widest font-semibold rounded-md shadow-md"
+                                type="submit">Search</button>
+                        </div>
                     </form>
                 </div>
 
             </div>
-            <div>
-                <button
-                    class="bg-blue-800 mt-4 text-white py-2 px-4 uppercase tracking-widest font-semibold rounded-md shadow-md" type="submit">Search</button>
-            </div>
+
 
             <div>
                 <x-table :student="$students" />
