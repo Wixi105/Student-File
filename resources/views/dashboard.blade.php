@@ -9,8 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <input type="text" class="w-full border border-blue-900 focus:border-b-900 rounded-md"
-                        placeholder="Search for a Student. (e.g. Michael Agyei or PS/ITC/17/0019)">
+                    <form>
+                        <input type="text" class="w-full border border-blue-900 focus:border-black rounded-md"
+                            placeholder="Search for a Student. (e.g. Michael Agyei or PS/ITC/17/0019)" name="search"
+                            id="search" value="{{ request('search') }}">
+                    </form>
                 </div>
 
             </div>
@@ -23,7 +26,8 @@
                 <x-table :student="$students" />
             </div>
             <div class="mt-8">
-                {{ $students->links() }}
+                {{ $students->appends(request()->only('search'))->links() }}
+                {{-- $contacts->appends(request()->only('company_id'))->links() --}}
             </div>
         </div>
     </div>

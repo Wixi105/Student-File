@@ -28,7 +28,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-blue-900 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="bg-blue-900 divide-y divide-gray-200 dark:divide-gray-700 p-5">
                             @foreach ($student as $stu)
                                 <tr class="hover:bg-gray-700">
 

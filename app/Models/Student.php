@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\File;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\File;
 
 class Student extends Model
 {
@@ -20,5 +20,13 @@ class Student extends Model
     protected function getFnameAttribute($value)
     {
         return $value ?? "NONE";
+    }
+
+    public function scopeFilter($query)
+    {
+        if ($search = request('search')) {
+            $query->where('fname', 'LIKE', "%{$search}%");
+        }
+        return $query;
     }
 }

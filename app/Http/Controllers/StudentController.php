@@ -8,7 +8,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::orderBy('regno', 'asc')->paginate(15);
+        $students = Student::orderBy('regno', 'asc')->filter()->paginate(15);
         return view('dashboard', compact('students'));
     }
 
