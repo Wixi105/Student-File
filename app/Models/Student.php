@@ -26,6 +26,8 @@ class Student extends Model
     {
         if ($search = request('search')) {
             $query->where('fname', 'LIKE', "%{$search}%");
+            $query->orWhere('lname', 'LIKE', "%{$search}%");
+            $query->orWhere('regno', 'LIKE', "%{$search}%");
         }
         return $query;
     }

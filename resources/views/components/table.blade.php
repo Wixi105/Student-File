@@ -29,6 +29,8 @@
                             </tr>
                         </thead>
                         <tbody class="bg-blue-900 divide-y divide-gray-200 dark:divide-gray-700 p-5">
+                            @if ($student->count())
+                                
                             @foreach ($student as $stu)
                                 <tr class="hover:bg-gray-700">
 
@@ -47,6 +49,12 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="4" class="text-center py-10 text-3xl text-white font-bold tracking-wider">Student Does Not Exist</td>
+                                </tr>
+                            @endif
+
 
                         </tbody>
                     </table>

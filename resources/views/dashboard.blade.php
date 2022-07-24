@@ -19,7 +19,7 @@
             </div>
             <div>
                 <button
-                    class="bg-blue-800 mt-4 text-white py-2 px-4 uppercase tracking-widest font-semibold rounded-md shadow-md">Search</button>
+                    class="bg-blue-800 mt-4 text-white py-2 px-4 uppercase tracking-widest font-semibold rounded-md shadow-md" type="submit">Search</button>
             </div>
 
             <div>
