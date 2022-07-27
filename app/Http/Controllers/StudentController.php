@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\File;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -28,15 +29,21 @@ class StudentController extends Controller
 
             // $img->move(public_path('upload'), $fileName);
 
-            $img = $request->file_upload;
-            $fileName = time() . 'STU_FILE' . $img->getClientOriginalName();
+            $datetime = new DateTime();
+            $date = $datetime->format('m/d/Y_g:iA'); 
+
+            $uploadedFile = $request->file_upload;
+            $fileName = $date . '_STU_FILE_' . $uploadedFile->getClientOriginalName();
             $extension = explode(".", $fileName);
-            $fileSize = $img->getSize();
+            $fileSize = $uploadedFile->getSize();
             $fileType = end($extension);
             $userID = Auth::id();
-            $storage_url = Storage::putFileAs("uploads/{$student->studid}/", $img, $fileName);
+            $storage_url = Storage::putFileAs("uploads/{$student->studid}", $uploadedFile, $fileName);
             $status = 1;
             $studid = $student->studid;
+
+            // $arr = ['filename' => $fileName, 'filesize' => $fileSize, 'file extension' => $fileType, 'user_id' => $userID, 'path' => $storage_url, "status" => $status, "studid" => $studid];
+            // dd($arr);
 
             $file = new File();
             $file->filename = $fileName;
@@ -48,10 +55,8 @@ class StudentController extends Controller
             $file->userid = $userID;
             $file->save();
 
-            // $arr = ['filename' => $fileName, 'filesize' => $fileSize, 'file extension' => $fileType, 'user_id' => $userID, 'path' => $storage_url, "status" => $status, "studid" => $studid];
-            // dd($arr);
         }
-
+        return back()->with('File Added Successfully');
 
     }
 
