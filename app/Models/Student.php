@@ -30,6 +30,7 @@ class Student extends Model
             $query->orWhere('regno', 'LIKE', "%{$search}%");
             $query->orWhere('dob', 'LIKE', "%{$search}%");
             $query->orWhereRaw("concat(fname, ' ', lname) like '%{$search}%' ");
+            $query->orWhereRaw("concat(fname, ' ', mname, ' ', lname) like '%{$search}%' ");
 
         }
         return $query;

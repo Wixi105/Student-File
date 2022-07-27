@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold uppercase text-xl text-gray-800 leading-tight">
+        <h2 class="font-bold uppercase text-xl text-blue-900 leading-tight">
             {{ $student->fname }} {{ $student->mname }} {{ $student->lname }}
         </h2>
     </x-slot>
@@ -95,7 +95,7 @@
             </div>
             <div class="my-4"></div>
         </div>
-        
+
         {{-- File Upload Form --}}
         <div>
 
