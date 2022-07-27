@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [StudentController::class, 'index'])->name('students.dashboard');
     Route::get('/students/{student:studid}', [StudentController::class, 'show'])->name('students.show');
-    Route::post('/students/upload', [StudentController::class, 'upload'])->name('students.upload');
+    Route::post('/students/{student:studid}', [StudentController::class, 'upload'])->name('students.upload');
 
 });
 

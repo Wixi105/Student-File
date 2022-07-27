@@ -99,7 +99,7 @@
         {{-- File Upload Form --}}
         <div>
 
-            <x-file-upload />
+            <x-file-upload :student="$student"/>
         </div>
         {{-- File Upload Form --}}
 

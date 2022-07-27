@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->integer('status');
+            $table->integer('status')->default(1);
 
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->dropColumn('status')->default(0);
+            $table->dropColumn('status');
         });
     }
 };
