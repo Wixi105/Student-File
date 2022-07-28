@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
 use App\Models\File;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -22,38 +21,53 @@ class StudentController extends Controller
         return view('students.show', compact('student'));
     }
 
+    public function tempUpload(Student $student, Request $request)
+    {
+        if ($request->hasFile('file_upload')) {
+            $file = $request->file('file_upload');
+            $fileName = now()->timestamp . '_STU_FILE_' . $file->getClientOriginalName();
+            $folder = uniqid() . '-' . now()->timestamp;
+            $file->storeAs("uploads/tmp/{$student->studid}" . $folder, $fileName);
+            return $folder;
+        }
+        return '';
+    }
+
     public function upload(Student $student, Request $request)
     {
+
+        $this->validate($request, [
+            'file_upload' => 'required',
+            'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp',
+        ]);
 
         if ($request->hasFile('file_upload')) {
 
             // $img->move(public_path('upload'), $fileName);
+            foreach ($request->file('file_upload') as $file) {
 
-            $datetime = new DateTime();
-            $date = $datetime->format('m/d/Y_g:iA'); 
+                $fileName = now()->timestamp . '_STU_FILE_' . $file->getClientOriginalName();
+                $extension = explode(".", $fileName);
+                $fileSize = $file->getSize();
+                $fileType = end($extension);
+                $userID = Auth::id();
+                $storage_url = Storage::putFileAs("uploads/{$student->studid}", $file, $fileName);
+                $status = 1;
+                $studid = $student->studid;
 
-            $uploadedFile = $request->file_upload;
-            $fileName = $date . '_STU_FILE_' . $uploadedFile->getClientOriginalName();
-            $extension = explode(".", $fileName);
-            $fileSize = $uploadedFile->getSize();
-            $fileType = end($extension);
-            $userID = Auth::id();
-            $storage_url = Storage::putFileAs("uploads/{$student->studid}", $uploadedFile, $fileName);
-            $status = 1;
-            $studid = $student->studid;
+                // $arr = ['filename' => $fileName, 'filesize' => $fileSize, 'file extension' => $fileType, 'user_id' => $userID, 'path' => $storage_url, "status" => $status, "studid" => $studid];
+                // dd($arr);
 
-            // $arr = ['filename' => $fileName, 'filesize' => $fileSize, 'file extension' => $fileType, 'user_id' => $userID, 'path' => $storage_url, "status" => $status, "studid" => $studid];
-            // dd($arr);
-
-            $file = new File();
-            $file->filename = $fileName;
-            $file->filetype = $fileType;
-            $file->filesize = $fileSize;
-            $file->storage_url = $storage_url;
-            $file->status = $status;
-            $file->studid = $studid;
-            $file->userid = $userID;
-            $file->save();
+                $file = new File();
+                $file->filename = $fileName;
+                $file->filetype = $fileType;
+                $file->filesize = $fileSize;
+                $file->storage_url = $storage_url;
+                $file->status = $status;
+                $file->studid = $studid;
+                $file->userid = $userID;
+                $file->save();
+            }
 
         }
         return back()->with('File Added Successfully');

@@ -1,7 +1,12 @@
 @props(['student'])
 <!-- component -->
-<div class="flex w-full mt-7 items-center justify-center bg-grey-lighter">
-    <div class="text-center">
+<div class=" w-full mt-7 items-center justify-center bg-grey-lighter p-7">
+    <div class="w-1/2 mx-auto mt-16 border-blue-800 rounded-md">
+
+        <input type="file" name="file_upload" id="file" class="font-bold text">
+    </div>
+
+    {{-- <div class="text-center">
         <label
             class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue-900 rounded-lg shadow-md tracking-wide uppercase cursor-pointer hover:bg-blue-900 hover:text-white">
             <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -12,15 +17,35 @@
             <form action="{{ route('students.upload', $student->studid) }}" enctype="multipart/form-data" method="post"
                 id="form">
                 @csrf
-                <input type='file' class="hidden" name="file_upload" />
-                <button type="submit"
-                    class="bg-white text-blue-900 py-3 px-4 mt-4 uppercase font-bold rounded-md shadow-md w-full"
-                    id="submit">Submit</button>
+                <input type='file' class="hidden" name="file_upload" id="file_upload" />
             </form>
         </label>
+        <img id="image" src="#" alt="Your Image" />
+        <button type="submit"
+            class="bg-white text-blue-900 py-3 px-4 mt-4 uppercase font-bold rounded-md shadow-md w-full"
+            id="form-submit">Submit</button>
         <div>
 
 
         </div>
-    </div>
+    </div> --}}
 </div>
+@section('scripts')
+    <script>
+        // Get a reference to the file input element
+        const inputElement = document.querySelector('input[type="file"]');
+
+        // Create a FilePond instance
+        const pond = FilePond.create(inputElement);
+        FilePond.setOptions({
+            server: {
+                url: "{{ route('students.temp',$student->studid) }}",
+                headers: {
+                    "X-CSRF-TOKEN": ' {{ csrf_token() }}'
+                }
+
+            },
+
+        })
+    </script>
+@endsection

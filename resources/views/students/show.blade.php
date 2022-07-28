@@ -98,8 +98,8 @@
 
         {{-- File Upload Form --}}
         <div>
-
-            <x-file-upload :student="$student"/>
+          
+            <x-file-upload :student="$student" />
         </div>
         {{-- File Upload Form --}}
 
