@@ -43,13 +43,14 @@
         // Create a FilePond instance
         const pond = FilePond.create(inputElement);
         FilePond.setOptions({
+            maxFiles:1,
             server: {
                 url: "{{ route('students.temp', $student->studid) }}",
                 headers: {
                     "X-CSRF-TOKEN": ' {{ csrf_token() }}'
                 }
 
-            },
+            },            
 
         })
     </script>

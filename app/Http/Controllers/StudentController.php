@@ -20,7 +20,6 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $files = File::filter($student->studid)->get();
-        // dd($files);
         return view("students.show", compact(['student', 'files']));
     }
 
@@ -32,7 +31,7 @@ class StudentController extends Controller
         ]);
         if ($request->hasFile('file_upload')) {
             $file = $request->file('file_upload');
-            $fileName = now()->timestamp . '_STU_FILE_' . $file->getClientOriginalName();
+            $fileName = now()->timestamp . '_STUFILE_' . $file->getClientOriginalName();
             $folder = $student->studid;
             $file->storeAs("tmp/{$student->studid}", $fileName);
 
@@ -62,6 +61,9 @@ class StudentController extends Controller
         $storage_url = Storage::url("app/uploads/{$student->studid}/{$file->getFilename()}");
         $studid = $student->studid;
 
+        $fileNameParts = explode("_", $fileName, 3);
+        $fileNameActual = end($fileNameParts);
+
         $genFile = new File();
         $genFile->filename = $fileName;
         $genFile->filetype = $fileType;
@@ -69,6 +71,7 @@ class StudentController extends Controller
         $genFile->status = $status;
         $genFile->studid = $studid;
         $genFile->userid = $userID;
+        $genFile->filename_actual = $fileNameActual;
         $genFile->storage_url = $storage_url;
         $genFile->save();
 

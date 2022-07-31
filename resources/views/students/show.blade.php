@@ -103,11 +103,11 @@
                 </div>
             @endif
         </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg p-5">
 
             <div>
                 @foreach ($files as $file)
-                    <p class="py-2">{{ $file->filename }}</p>
+                    <a class="">{{ $file->filename_actual }}</a>
                 @endforeach
             </div>
         </div>
@@ -115,7 +115,6 @@
 
         {{-- File Upload Form --}}
         <div>
-
             <x-file-upload :student="$student" />
         </div>
         {{-- File Upload Form --}}
