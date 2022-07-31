@@ -19,7 +19,9 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        return view("students.show", compact('student'));
+        $files = File::filter($student->studid)->get();
+        // dd($files);
+        return view("students.show", compact(['student', 'files']));
     }
 
     public function tempUpload(Student $student, Request $request)
@@ -44,20 +46,20 @@ class StudentController extends Controller
         return '';
     }
 
-    public function upload(Request $request, Student $student)
+    public function upload(Student $student)
     {
 
         $directory = $this->getDirectory($student);
         $files = Storage::files($directory);
         $file = $this->fetchFile($files, $student);
 
-        $fileName = now()->timestamp . '_STU_FILE_' . $file->getFilename();
+        $fileName = $file->getFilename();
         $extension = explode(".", $fileName);
         $fileSize = $file->getSize();
         $fileType = end($extension);
         $userID = Auth::id();
         $status = 1;
-        $storage_url = storage_path("app/tmp/{$student->studid}/{$file->getFilename()}");
+        $storage_url = Storage::url("app/uploads/{$student->studid}/{$file->getFilename()}");
         $studid = $student->studid;
 
         $genFile = new File();
@@ -73,10 +75,11 @@ class StudentController extends Controller
         Storage::move("tmp/{$student->studid}/{$file->getFilename()}", "uploads/{$student->studid}/{$file->getFilename()}");
         Storage::deleteDirectory("tmp");
 
-        return back()->with('message', 'File Uploaded Successfully');
+        return back()->with('message', 'File Upload Successful');
 
     }
 
+    // CREATED FUNCTIONS.
     protected function getDirectory($student)
     {
         $directories = Storage::directories('tmp');
@@ -91,8 +94,9 @@ class StudentController extends Controller
 
     protected function fetchFile($files, $student)
     {
-        if ($files[0]) {
-            $filesPath = $files[0];
+        if (count($files) > 0) {
+            $lastFile = end($files);
+            $filesPath = $lastFile;
             $dirnames = explode("/", $filesPath);
             $fileName = end($dirnames);
             $filePath = storage_path("app/tmp/{$student->studid}/{$fileName}");

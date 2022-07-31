@@ -95,10 +95,27 @@
             </div>
             <div class="my-4"></div>
         </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 shadow-sm rounded-md">
+            @if ($message = session('message'))
+                <div class="mx-6 bg-green-100 rounded-lg py-5 px-6 text-base text-green-700 mb-3 font-bold"
+                    role="alert">
+                    {{ $message }}
+                </div>
+            @endif
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg">
+
+            <div>
+                @foreach ($files as $file)
+                    <p class="py-2">{{ $file->filename }}</p>
+                @endforeach
+            </div>
+        </div>
+
 
         {{-- File Upload Form --}}
         <div>
-          
+
             <x-file-upload :student="$student" />
         </div>
         {{-- File Upload Form --}}

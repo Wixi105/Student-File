@@ -1,7 +1,7 @@
 @props(['student'])
 <!-- component -->
-<div class=" w-full mt-7 items-center justify-center bg-grey-lighter p-7">
-    <div class="w-1/2 mx-auto mt-16 border-blue-800 rounded-md">
+<div class=" w-full mt-2 items-center justify-center bg-grey-lighter p-7">
+    <div class="w-1/2 mx-auto mt-10 border-blue-800 rounded-md">
 
         <input type="file" name="file_upload" id="file" class="font-bold">
 
