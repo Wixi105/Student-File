@@ -3,7 +3,14 @@
 <div class=" w-full mt-7 items-center justify-center bg-grey-lighter p-7">
     <div class="w-1/2 mx-auto mt-16 border-blue-800 rounded-md">
 
-        <input type="file" name="file_upload" id="file" class="font-bold text">
+        <input type="file" name="file_upload" id="file" class="font-bold">
+
+        <form action="{{ route('students.upload', $student->studid) }}" method="POST" name="file_move">
+            @csrf
+            <input type="submit" value="Submit" 
+                class="hover:cursor-pointer bg-white text-blue-900 py-3 px-4 mt-4 uppercase font-bold rounded-md shadow-md w-full hover:bg-blue-900 hover:text-white transition-all ease-in-out delay-75"
+                id="form-submit" />
+        </form>
     </div>
 
     {{-- <div class="text-center">
@@ -21,9 +28,7 @@
             </form>
         </label>
         <img id="image" src="#" alt="Your Image" />
-        <button type="submit"
-            class="bg-white text-blue-900 py-3 px-4 mt-4 uppercase font-bold rounded-md shadow-md w-full"
-            id="form-submit">Submit</button>
+       
         <div>
 
 
@@ -39,7 +44,7 @@
         const pond = FilePond.create(inputElement);
         FilePond.setOptions({
             server: {
-                url: "{{ route('students.temp',$student->studid) }}",
+                url: "{{ route('students.temp', $student->studid) }}",
                 headers: {
                     "X-CSRF-TOKEN": ' {{ csrf_token() }}'
                 }
