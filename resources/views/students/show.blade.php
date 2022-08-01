@@ -104,8 +104,10 @@
             @endif
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg p-5">
-
+            <h3 class="text-blue-900 font-semibold text-lg uppercase">Uploaded Files For Student</h3>
             <div>
+                @if ($files->count())
+                    
                 @foreach ($files as $file)
                     <div class="flex items-center justify-between">
                         <a class="text-lg">{{ $file->filename_actual }}</a>
@@ -135,6 +137,10 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <p class="text-lg">There are no files for this student.</p>
+                @endif
+
             </div>
         </div>
 

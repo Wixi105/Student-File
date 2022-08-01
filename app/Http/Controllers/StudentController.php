@@ -25,16 +25,18 @@ class StudentController extends Controller
 
     public function tempUpload(Student $student, Request $request)
     {
-        // dd($request);
         $this->validate($request, [
             'file_upload' => 'required',
             'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp',
         ]);
+
         if ($request->hasFile('file_upload')) {
+
             $file = $request->file('file_upload');
             $fileName = now()->timestamp . '_STUFILE_' . $file->getClientOriginalName();
             $folder = $student->studid;
-            $file->storeAs("tmp/{$student->studid}", $fileName, 'public');
+
+            $file->storePubliclyAs("/tmp/{$student->studid}", $fileName);
 
             TemporaryFile::create([
                 'folder' => $folder,
@@ -59,7 +61,7 @@ class StudentController extends Controller
         $fileType = end($extension);
         $userID = Auth::id();
         $status = 1;
-        $storage_url = Storage::url("uploads/{$student->studid}/{$file->getFilename()}");
+        $storage_url = Storage::url("/public/uploads/{$student->studid}/{$file->getFilename()}");
         $studid = $student->studid;
 
         $fileNameParts = explode("_", $fileName, 3);
@@ -76,7 +78,7 @@ class StudentController extends Controller
         $genFile->storage_url = $storage_url;
         $genFile->save();
 
-        Storage::move("tmp/{$student->studid}/{$file->getFilename()}", "uploads/{$student->studid}/{$file->getFilename()}");
+        Storage::move("public/tmp/{$student->studid}/{$file->getFilename()}", "public/uploads/{$student->studid}/{$file->getFilename()}");
         Storage::deleteDirectory("tmp");
 
         return back()->with('message', 'File Upload Successful');
@@ -104,7 +106,7 @@ class StudentController extends Controller
             $dirnames = explode("/", $filesPath);
             $fileName = end($dirnames);
             // dd($dirnames);
-            $filePath = storage_path("tmp/{$student->studid}/{$fileName}");
+            $filePath = storage_path("app/public/tmp/{$student->studid}/{$fileName}");
             // $filePath = Storage::get("tmp/{$student->studid}/{$fileName}");
             $fileObj = new \Symfony\Component\HttpFoundation\File\File($filePath);
             return $fileObj;
