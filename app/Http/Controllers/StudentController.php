@@ -25,6 +25,7 @@ class StudentController extends Controller
 
     public function tempUpload(Student $student, Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'file_upload' => 'required',
             'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp',
@@ -33,7 +34,7 @@ class StudentController extends Controller
             $file = $request->file('file_upload');
             $fileName = now()->timestamp . '_STUFILE_' . $file->getClientOriginalName();
             $folder = $student->studid;
-            $file->storeAs("tmp/{$student->studid}", $fileName);
+            $file->storeAs("tmp/{$student->studid}", $fileName, 'public');
 
             TemporaryFile::create([
                 'folder' => $folder,
@@ -58,7 +59,7 @@ class StudentController extends Controller
         $fileType = end($extension);
         $userID = Auth::id();
         $status = 1;
-        $storage_url = Storage::url("app/uploads/{$student->studid}/{$file->getFilename()}");
+        $storage_url = Storage::url("uploads/{$student->studid}/{$file->getFilename()}");
         $studid = $student->studid;
 
         $fileNameParts = explode("_", $fileName, 3);
@@ -102,7 +103,8 @@ class StudentController extends Controller
             $filesPath = $lastFile;
             $dirnames = explode("/", $filesPath);
             $fileName = end($dirnames);
-            $filePath = storage_path("app/tmp/{$student->studid}/{$fileName}");
+            // dd($dirnames);
+            $filePath = storage_path("tmp/{$student->studid}/{$fileName}");
             // $filePath = Storage::get("tmp/{$student->studid}/{$fileName}");
             $fileObj = new \Symfony\Component\HttpFoundation\File\File($filePath);
             return $fileObj;

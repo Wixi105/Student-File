@@ -110,7 +110,7 @@
 
                     @foreach ($files as $file)
                         <div class="flex items-center justify-between py-3">
-                            <a class="text-lg" href="{{ url("uploads/{$student->studid}/{$file->filename}") }}"
+                            <a class="text-lg" href="{{ asset("storage/uploads/{$student->studid}/{$file->filename}") }}"
                                 target="__blank">{{ $file->filename_actual }}</a>
                             <div class="flex items-center">
                                 <svg class="w-5 h-5 mr-3 text-blue-900 cursor-pointer " fill="none"
