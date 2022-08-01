@@ -78,7 +78,9 @@ class StudentController extends Controller
         $genFile->storage_url = $storage_url;
         $genFile->save();
 
-        Storage::move("public/tmp/{$student->studid}/{$file->getFilename()}", "public/uploads/{$student->studid}/{$file->getFilename()}");
+        // Storage::move("public/tmp/{$student->studid}/{$fileName}", "/uploads/{$student->studid}/{$fileName}");
+        $file->move(public_path("storage/uploads/{$student->studid}"),$fileName);
+
         Storage::deleteDirectory("tmp");
 
         return back()->with('message', 'File Upload Successful');
