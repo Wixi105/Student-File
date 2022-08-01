@@ -18,7 +18,7 @@ class File extends Model
 
     public function fileURL()
     {
-        return Storage::url($this->storage_url);
+        return Storage::url($this->filename);
     }
 
     public function scopeFilter($query, $studid)

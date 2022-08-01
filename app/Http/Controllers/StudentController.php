@@ -27,7 +27,7 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'file_upload' => 'required',
-            'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp',
+            'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp|size:10240',
         ]);
 
         if ($request->hasFile('file_upload')) {
@@ -61,7 +61,7 @@ class StudentController extends Controller
         $fileType = end($extension);
         $userID = Auth::id();
         $status = 1;
-        $storage_url = Storage::url("/public/uploads/{$student->studid}/{$file->getFilename()}");
+        $storage_url = Storage::url("/uploads/{$student->studid}/{$file->getFilename()}");
         $studid = $student->studid;
 
         $fileNameParts = explode("_", $fileName, 3);
@@ -79,13 +79,15 @@ class StudentController extends Controller
         $genFile->save();
 
         // Storage::move("public/tmp/{$student->studid}/{$fileName}", "/uploads/{$student->studid}/{$fileName}");
-        $file->move(public_path("storage/uploads/{$student->studid}"),$fileName);
+        $file->move(public_path("storage/uploads/{$student->studid}"), $fileName);
 
         Storage::deleteDirectory("tmp");
 
         return back()->with('message', 'File Upload Successful');
 
     }
+
+
 
     // CREATED FUNCTIONS.
     protected function getDirectory($student)
