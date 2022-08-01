@@ -27,7 +27,7 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'file_upload' => 'required',
-            'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp|size:10240',
+            'file_upload.*' => 'mimes:doc,pdf,docx,zip,png,jpg,bmp|size:5120',
         ]);
 
         if ($request->hasFile('file_upload')) {
