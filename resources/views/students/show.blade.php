@@ -103,46 +103,38 @@
                 </div>
             @endif
         </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg p-5 mt-16">
-            <h3 class="uppercase mb-5 text-blue-900 font-semibold">Uploaded files for Student</h3>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg p-5">
+
             <div>
-                @if ($files->count())
-
-                    @foreach ($files as $file)
-                        <div class="flex items-center justify-between py-3">
-                            <a class="text-lg" href="{{ asset("storage/uploads/{$student->studid}/{$file->filename}") }}"
-                                target="__blank">{{ $file->filename_actual }}</a>
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 mr-3 text-blue-900 cursor-pointer " fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                    </path>
-                                </svg>
-                                {{-- VIEW EYE END --}}
-                                {{-- DOWNLOAD START --}}
-                                <svg class="w-5 h-5 mr-3 text-green-600 cursor-pointer" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                </svg>
-                                {{-- DELETE START --}}
-                                <svg class="w-5 h-5 text-red-700 cursor-pointer" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                    </path>
-                                </svg>
-                            </div>
+                @foreach ($files as $file)
+                    <div class="flex items-center justify-between">
+                        <a class="text-lg">{{ $file->filename_actual }}</a>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg>
+                            {{-- VIEW EYE END --}}
+                            {{-- DOWNLOAD START --}}
+                            <svg class="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            {{-- DELETE START --}}
+                            <svg class="w-5 h-5 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                </path>
+                            </svg>
                         </div>
-                        <hr>
-                    @endforeach
-                @else
-                <p class="text-lg">No files have been uploaded for this student.</p>
-                @endif
-
+                    </div>
+                @endforeach
             </div>
         </div>
 
