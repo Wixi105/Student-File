@@ -26,8 +26,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/students/{student:studid}', [StudentController::class, 'upload'])->name('students.upload');
 
-    Route::post('/temp/{student:studid}', [StudentController::class, 'tempUpload'])->name('students.temp');
+    Route::post('/delete/{file:id}', [StudentController::class, 'destroy'])->name('students.destroy');
 
+    Route::post('/temp/{student:studid}', [StudentController::class, 'tempUpload'])->name('students.temp');
 
 });
 

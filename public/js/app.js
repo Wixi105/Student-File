@@ -4,3 +4,8 @@ button.addEventListener("click", function () {
     form.submit();
 });
 
+const svgDel = document.getElementById("delete");
+svgDel.addEventListener("click", function(){
+    delForm = document.getElementById("deleteForm");
+    delForm.submit();
+})

@@ -102,6 +102,12 @@
                     {{ $message }}
                 </div>
             @endif
+            @if ($message = session('delete'))
+            <div class="mx-6 bg-red-200 rounded-lg py-5 px-6 text-base text-red-700 mb-3 font-bold"
+                role="alert">
+                {{ $message }}
+            </div>
+        @endif
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow-md rounded-lg p-5">
             <h3 class="text-blue-900 font-semibold text-lg uppercase">Uploaded Files For Student</h3>
@@ -125,15 +131,16 @@
                                 </a>
                                 {{-- VIEW EYE END --}}
                                 {{-- DELETE START --}}
-                                <a href="">
-
-                                    <svg class="w-5 h-5 text-red-700 cursor-pointer" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                        </path>
-                                    </svg>
-                                </a>
+                                <form action="{{ route('students.destroy', $file->id) }}" id="deleteForm" method="POST">
+                                    @csrf
+                                        <svg onclick="return confirm('Are you sure?')" id="delete" class="w-5 h-5 text-red-700 cursor-pointer" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                            </path>
+                                        </svg>
+                                </form>
                             </div>
                         </div>
                         <hr>

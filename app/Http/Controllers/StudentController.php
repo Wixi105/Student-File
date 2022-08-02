@@ -87,7 +87,12 @@ class StudentController extends Controller
 
     }
 
-
+    public function destroy(File $file)
+    {
+        $file->status = 0;
+        $file->save();
+        return back()->with('delete', "File Deletion Successful");
+    }
 
     // CREATED FUNCTIONS.
     protected function getDirectory($student)
