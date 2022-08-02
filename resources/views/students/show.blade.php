@@ -133,7 +133,7 @@
                                 {{-- DELETE START --}}
                                 <form action="{{ route('students.destroy', $file->id) }}" id="deleteForm" method="POST">
                                     @csrf
-                                        <svg onclick="return confirm('Are you sure?')" id="delete" class="w-5 h-5 text-red-700 cursor-pointer" fill="none"
+                                        <svg onclick="return confirm('Are you sure you want to delete this file?')" id="delete" class="w-5 h-5 text-red-700 cursor-pointer" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
