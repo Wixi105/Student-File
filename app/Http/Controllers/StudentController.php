@@ -33,7 +33,12 @@ class StudentController extends Controller
         if ($request->hasFile('file_upload')) {
 
             $file = $request->file('file_upload');
+
+            // filename coming in from request
             $fileName = now()->timestamp . '_STUFILE_' . $file->getClientOriginalName();
+            // filename stripped of whitespaces.
+            // $fileName = str_replace(" ", "", $file_name);
+
             $folder = $student->studid;
 
             $file->storePubliclyAs("/tmp/{$student->studid}", $fileName);
@@ -115,6 +120,8 @@ class StudentController extends Controller
             $dirnames = explode("/", $filesPath);
             $fileName = end($dirnames);
             // dd($dirnames);
+            // dd($fileName);
+
             $filePath = storage_path("app/public/tmp/{$student->studid}/{$fileName}");
             // $filePath = Storage::get("tmp/{$student->studid}/{$fileName}");
             $fileObj = new \Symfony\Component\HttpFoundation\File\File($filePath);
